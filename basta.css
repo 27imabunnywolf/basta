@@ -1,0 +1,332 @@
+#envelope {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 150px;
+  background-color: #d9534f; /* Warm romantic red */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+body {
+  /* Keep your existing background color */
+  background-color: #f0e6f6;
+
+  /* Add repeating text background */
+  background-image: repeating-linear-gradient(
+    45deg,                                   /* angle */
+    transparent,
+    transparent 10px,
+    #f9c6d3 10px,
+    #f9c6d3 20px
+  ),
+  repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 10px,
+    #f9c6d3 10px,
+    #f9c6d3 20px
+  ),
+  /* The actual text pattern */
+  repeating-radial-gradient(
+    circle,
+    transparent 0,
+    transparent 15px,
+    #f9c6d3 15px,
+    #f9c6d3 20px
+  );
+
+  position: relative;
+  z-index: 0; /* Keep background behind */
+  font-family: Arial, sans-serif;
+  color: #e91e63;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+body::before {
+  content: 
+    "HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · \A \
+HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · \A \
+HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · \A \
+HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · \A \
+HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · \A \
+HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · \A \
+HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · \A \
+HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY · HAPPY BIRTHDAY ·";
+  
+  white-space: pre;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 60px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.08);
+  font-weight: 900;
+  font-family: 'Arial Black', Arial, sans-serif;
+  pointer-events: none;
+  z-index: 0;
+  padding: 20px;
+  overflow: hidden;
+} 
+.envlope-wrapper, .reset {
+  position: relative;
+  z-index: 1;
+}
+
+.front {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+
+.flap {
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 82px solid transparent;
+  /* a little smaller */
+  border-top: 98px solid #f080dd; /* Same romantic red */
+  /* a little larger */
+  transform-origin: top;
+  pointer-events: none;
+}
+
+.pocket {
+  border-left: 140px solid #f0a5ed; /* Soft pinkish red for the pocket */
+  border-right: 140px solid #f0a5ed;
+  border-bottom: 90px solid #f080dd; /* Lighter romantic red */
+  border-top: 90px solid transparent;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.letter {
+  position: relative;
+  background-color: #fff;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 90%;
+  top: 5%;
+  border-radius: 6px;
+  box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
+  font-family: "Dancing Script", cursive;
+}
+
+.letter:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.words {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  height: 14%;
+  background-color: #fff; /* Light romantic tone */
+}
+
+.words.line1 {
+  top: 0%;
+  left: 10%;
+  font-size: 0.5rem;
+  width: 20%;
+  height: 7%;
+}
+
+.words.line2 {
+  top: 20%;
+  text-align: center;
+  width: 80%;
+  height: auto;
+}
+
+.words.line2 .qr {
+  width: 60%;       /* adjust size to fit */
+  max-width: 160px; /* max size so it never grows too big */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+
+
+.open .flap {
+  transform: rotateX(180deg);
+  transition: transform 0.4s ease, z-index 0.6s;
+  z-index: 1;
+}
+
+.close .flap {
+  transform: rotateX(0deg);
+  transition: transform 0.4s 0.6s ease, z-index 1s;
+  z-index: 5;
+}
+
+.close .letter {
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+
+.open .letter {
+  transform: translateY(-100px);
+  transition: transform 0.4s 0.6s ease, z-index 0.6s;
+  z-index: 2;
+}
+
+.hearts {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.heart {
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+  pointer-events: none;
+}
+
+.heart:before,
+.heart:after {
+  position: absolute;
+  content: "";
+  left: 50px;
+  top: 0;
+  width: 50px;
+  height: 80px;
+  background: #e60073; /* Deep romantic pink */
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  pointer-events: none;
+}
+
+.heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+.close .heart {
+  opacity: 0;
+  -webkit-animation: none;
+  animation: none;
+}
+
+.a1 {
+  left: 20%;
+  transform: scale(0.6);
+  opacity: 1;
+  -webkit-animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
+  -moz-animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+.a2 {
+  left: 55%;
+  transform: scale(1);
+  opacity: 1;
+  -webkit-animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
+  -moz-animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+.a3 {
+  left: 10%;
+  transform: scale(0.8);
+  opacity: 1;
+  -webkit-animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
+  -moz-animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+@-webkit-keyframes slideUp {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -600px;
+  }
+}
+@keyframes slideUp {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -600px;
+  }
+}
+@-webkit-keyframes sideSway {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}
+@keyframes sideSway {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}
+body {
+  background-color: #f0e6f6; /* Soft lavender for a romantic, dreamy feel */
+}
+
+.envlope-wrapper {
+  height: 380px;
+}
+
+.reset {
+  text-align: center;
+}
+
+.reset button {
+  font-weight: 800;
+  font-style: normal;
+  transition: all 0.1s linear;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: solid 2px #d9534f;
+  border-radius: 4px;
+  color: #d9534f;
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 5px;
+  padding: 10px;
+  line-height: 1em;
+  text-decoration: none;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+.reset button:hover {
+  background-color: #d9534f;
+  color: #fff;
+}
